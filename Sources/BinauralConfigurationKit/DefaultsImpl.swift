@@ -7,10 +7,12 @@
 
 import Foundation
 
-class DefaultsImpl: Defaults {
+public class DefaultsImpl: Defaults {
     private let standardDefaults = UserDefaults.init(suiteName: "group.com.giorgiocalderolla.binaural")!
 
-    var environment: String? {
+    public init() {}
+
+    public var environment: String? {
         get {
             return standardDefaults.string(forKey: DefaultsKeys.environment)
         }
@@ -20,7 +22,7 @@ class DefaultsImpl: Defaults {
     }
 
 
-    var remoteConfig: [RemoteConfig]? {
+    public var remoteConfig: [RemoteConfig]? {
         get {
             return standardDefaults.getObject(forKey: DefaultsKeys.remoteConfig, castTo: [RemoteConfig].self)
         }

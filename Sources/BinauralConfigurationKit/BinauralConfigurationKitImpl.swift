@@ -9,7 +9,7 @@ public struct BinauralConfigurationKitImpl: BinauralConfigurationKit {
 
     private var defaults: Defaults
 
-    init(defaults: Defaults = DefaultsImpl()) {
+    public init(defaults: Defaults = DefaultsImpl()) {
         self.defaults = defaults
     }
 
