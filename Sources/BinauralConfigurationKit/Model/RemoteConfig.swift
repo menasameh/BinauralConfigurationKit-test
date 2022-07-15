@@ -7,26 +7,26 @@
 
 import Foundation
 
+public enum RemoteConfigType: Codable, Equatable {
+    case string(String)
+    case bool(Bool)
+}
+
 public struct RemoteConfig: Codable, Equatable {
-    public enum `Type`: Codable, Equatable {
-        case string(String)
-        case bool(Bool)
-    }
-
     public let name: String
-    public let override: Type?
-    public let value: Type
+    public let override: RemoteConfigType?
+    public let value: RemoteConfigType
 
-    public var finalValue: Type { override ?? value }
+    public var finalValue: RemoteConfigType { override ?? value }
 
-    public init(name: String, override: RemoteConfig.`Type`?, value: RemoteConfig.`Type`) {
+    public init(name: String, override: RemoteConfigType?, value: RemoteConfigType) {
         self.name = name
         self.override = override
         self.value = value
     }
 
     public static func boolRemoteConfig(name: String, override: Bool? = nil, value: Bool) -> RemoteConfig {
-        let overrideValue: Type?
+        let overrideValue: RemoteConfigType?
         if let overrideAvailable = override {
             overrideValue = .bool(overrideAvailable)
         } else {
@@ -37,7 +37,7 @@ public struct RemoteConfig: Codable, Equatable {
     }
 
     public static func stringRemoteConfig(name: String, override: String? = nil, value: String) -> RemoteConfig {
-        let overrideValue: Type?
+        let overrideValue: RemoteConfigType?
         if let overrideAvailable = override {
             overrideValue = .string(overrideAvailable)
         } else {
