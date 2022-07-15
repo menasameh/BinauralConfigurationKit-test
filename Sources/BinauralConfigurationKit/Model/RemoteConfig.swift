@@ -19,6 +19,12 @@ public struct RemoteConfig: Codable, Equatable {
 
     public var finalValue: Type { override ?? value }
 
+    public init(name: String, override: RemoteConfig.`Type`?, value: RemoteConfig.`Type`) {
+        self.name = name
+        self.override = override
+        self.value = value
+    }
+
     public static func boolRemoteConfig(name: String, override: Bool? = nil, value: Bool) -> RemoteConfig {
         let overrideValue: Type?
         if let overrideAvailable = override {
