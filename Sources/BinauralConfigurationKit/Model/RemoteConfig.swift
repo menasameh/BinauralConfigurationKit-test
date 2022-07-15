@@ -13,11 +13,11 @@ public struct RemoteConfig: Codable, Equatable {
         case bool(Bool)
     }
 
-    let name: String
-    let override: Type?
-    let value: Type
+    public let name: String
+    public let override: Type?
+    public let value: Type
 
-    var finalValue: Type { override ?? value }
+    public var finalValue: Type { override ?? value }
 
     public static func boolRemoteConfig(name: String, override: Bool? = nil, value: Bool) -> RemoteConfig {
         let overrideValue: Type?
