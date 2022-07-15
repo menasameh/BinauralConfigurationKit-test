@@ -32,7 +32,7 @@ public struct BinauralConfigurationKitImpl: BinauralConfigurationKit {
         }
 
         let newRemoteConfigs: [RemoteConfig] = remoteConfigs.map { newRemoteConfig in
-            // keep the old overrided value
+            // keep the old overridden value
             guard let oldRemoteConfig = savedRemoteConfigs.first(where: { $0.name == newRemoteConfig.name }) else {
                 return newRemoteConfig
             }
