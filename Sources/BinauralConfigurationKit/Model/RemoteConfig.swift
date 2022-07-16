@@ -10,6 +10,7 @@ import Foundation
 public enum RemoteConfigType: Codable, Equatable {
     case string(String)
     case bool(Bool)
+    case number(Double)
 }
 
 public struct RemoteConfig: Codable, Equatable {
@@ -44,5 +45,15 @@ public struct RemoteConfig: Codable, Equatable {
             overrideValue = nil
         }
         return self.init(name: name, override: overrideValue, value: .string(value))
+    }
+
+    public static func numberRemoteConfig(name: String, override: Double? = nil, value: Double) -> RemoteConfig {
+        let overrideValue: RemoteConfigType?
+        if let overrideAvailable = override {
+            overrideValue = .number(overrideAvailable)
+        } else {
+            overrideValue = nil
+        }
+        return self.init(name: name, override: overrideValue, value: .number(value))
     }
 }
